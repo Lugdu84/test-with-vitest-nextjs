@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Counter from '@/components/counter';
+import Counter from '../components/counter';
 
 describe('Queries 8', () => {
 	it('render a composant and show screen.debug', () => {
