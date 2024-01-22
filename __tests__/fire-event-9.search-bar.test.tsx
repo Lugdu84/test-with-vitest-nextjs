@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import SearchBar from '@/components/search-bar';
+import SearchBar from '../components/search-bar';
 
 describe('test search bar', () => {
 	let input: HTMLInputElement;
