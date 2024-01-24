@@ -15,6 +15,13 @@ const secondTodo = {
 	completed: false,
 };
 
+const thirdText = 'Learn React Testing Library';
+const thirdTodo = {
+	id: 3,
+	title: thirdText,
+	completed: false,
+};
+
 // useTodos({ initialTodos: [firstTodo, secondTodo] });
 // useTodos()
 
@@ -48,5 +55,47 @@ describe('add Todo', () => {
 			result.current.addTodo(secondText);
 		});
 		expect(result.current.todos).toEqual([firstTodo, secondTodo]);
+	});
+});
+
+describe('delete Todo', () => {
+	it('can delete a todo if there is two todos', () => {
+		const { result } = renderHook(() =>
+			useTodos({ initialTodos: [firstTodo, secondTodo] })
+		);
+		act(() => {
+			result.current.deleteTodoById(1);
+		});
+		expect(result.current.todos).toEqual([secondTodo]);
+	});
+	it('can delete a todo if there is two todos', () => {
+		const { result } = renderHook(() =>
+			useTodos({ initialTodos: [firstTodo, secondTodo] })
+		);
+		act(() => {
+			result.current.deleteTodoById(2);
+		});
+		expect(result.current.todos).toEqual([firstTodo]);
+	});
+	it('can delete if there is only one todo, and return []', () => {
+		const { result } = renderHook(() =>
+			useTodos({ initialTodos: [firstTodo] })
+		);
+		act(() => {
+			result.current.deleteTodoById(1);
+		});
+		expect(result.current.todos).toEqual([]);
+	});
+	it('can create todo with good datas after deleting one', () => {
+		const { result } = renderHook(() =>
+			useTodos({ initialTodos: [firstTodo, secondTodo] })
+		);
+		act(() => {
+			result.current.deleteTodoById(1);
+		});
+		act(() => {
+			result.current.addTodo(thirdText);
+		});
+		expect(result.current.todos).toEqual([secondTodo, thirdTodo]);
 	});
 });
