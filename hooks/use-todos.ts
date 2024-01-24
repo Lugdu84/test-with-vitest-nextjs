@@ -1,8 +1,12 @@
 import { Todo } from '@/types/todo';
 import { useState } from 'react';
 
-export const useTodos = () => {
-	const [todos, setTodos] = useState<Todo[]>([]);
+type UseTodosProps = {
+	initialTodos?: Todo[];
+};
+
+export const useTodos = ({ initialTodos = [] }: UseTodosProps = {}) => {
+	const [todos, setTodos] = useState<Todo[]>(initialTodos);
 	const addTodo = (title: string) => {
 		const newTodo = {
 			id: todos.length + 1,
