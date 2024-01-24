@@ -59,7 +59,7 @@ describe('add Todo', () => {
 });
 
 describe('delete Todo', () => {
-	it('can delete a todo if there is two todos', () => {
+	it('can delete a todo if there are two todos', () => {
 		const { result } = renderHook(() =>
 			useTodos({ initialTodos: [firstTodo, secondTodo] })
 		);
@@ -68,7 +68,7 @@ describe('delete Todo', () => {
 		});
 		expect(result.current.todos).toEqual([secondTodo]);
 	});
-	it('can delete a todo if there is two todos', () => {
+	it('can delete a todo if there are two todos', () => {
 		const { result } = renderHook(() =>
 			useTodos({ initialTodos: [firstTodo, secondTodo] })
 		);
