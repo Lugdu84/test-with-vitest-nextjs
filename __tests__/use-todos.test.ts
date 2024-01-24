@@ -15,10 +15,19 @@ const secondTodo = {
 	completed: false,
 };
 
+// useTodos({ initialTodos: [firstTodo, secondTodo] });
+// useTodos()
+
 describe('initialization of the useTodos hook', () => {
 	it('byt default, should return an empty array of todos', () => {
 		const { result } = renderHook(() => useTodos());
 		expect(result.current.todos).toEqual([]);
+	});
+	it('return array of todos if called with an array of todos', () => {
+		const { result } = renderHook(() =>
+			useTodos({ initialTodos: [firstTodo, secondTodo] })
+		);
+		expect(result.current.todos).toEqual([firstTodo, secondTodo]);
 	});
 });
 
