@@ -27,9 +27,21 @@ export const useTodos = ({ initialTodos = [] }: UseTodosProps = {}) => {
 		setTodos(newTodos);
 	};
 
+	const updateTodo = (todo: Todo) => {
+		if (todo.title === '') return;
+		const newTodos = todos.map((t) => {
+			if (t.id === todo.id) {
+				return todo;
+			}
+			return t;
+		});
+		setTodos(newTodos);
+	};
+
 	return {
 		todos,
 		addTodo,
 		deleteTodoById,
+		updateTodo,
 	};
 };

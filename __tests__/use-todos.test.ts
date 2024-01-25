@@ -99,3 +99,80 @@ describe('delete Todo', () => {
 		expect(result.current.todos).toEqual([secondTodo, thirdTodo]);
 	});
 });
+
+describe('update todos', () => {
+	it("don't upate todo if title is empty", () => {
+		const { result } = renderHook(() =>
+			useTodos({ initialTodos: [firstTodo] })
+		);
+		const firstTodoUpdated = {
+			...firstTodo,
+			title: '',
+		};
+		act(() => {
+			result.current.updateTodo(firstTodoUpdated);
+		});
+		expect(result.current.todos).toEqual([firstTodo]);
+	});
+	it("update todo if title isn't empty", () => {
+		const { result } = renderHook(() =>
+			useTodos({ initialTodos: [firstTodo] })
+		);
+		const firstTodoUpdated = {
+			...firstTodo,
+			title: thirdText,
+		};
+		act(() => {
+			result.current.updateTodo(firstTodoUpdated);
+		});
+		expect(result.current.todos).toEqual([firstTodoUpdated]);
+	});
+	it("update todo's to completed", () => {
+		const { result } = renderHook(() =>
+			useTodos({ initialTodos: [firstTodo] })
+		);
+		const firstTodoUpdated = {
+			...firstTodo,
+			completed: true,
+		};
+		act(() => {
+			result.current.updateTodo(firstTodoUpdated);
+		});
+		const toBeCompleted = result.current.todos[0].completed;
+		expect(toBeCompleted).toBe(true);
+		act(() => {
+			result.current.updateTodo({
+				...firstTodoUpdated,
+				completed: !firstTodoUpdated.completed,
+			});
+		});
+		const toBeCompletedAgain = result.current.todos[0].completed;
+		expect(toBeCompletedAgain).toBe(false);
+	});
+	it('update with several todos, update only the first todo', () => {
+		const { result } = renderHook(() =>
+			useTodos({ initialTodos: [firstTodo, secondTodo] })
+		);
+		const firstTodoUpdated = {
+			...firstTodo,
+			title: thirdText,
+		};
+		act(() => {
+			result.current.updateTodo(firstTodoUpdated);
+		});
+		expect(result.current.todos).toEqual([firstTodoUpdated, secondTodo]);
+	});
+	it('update with several todos, update only the second todo', () => {
+		const { result } = renderHook(() =>
+			useTodos({ initialTodos: [firstTodo, secondTodo] })
+		);
+		const secondTodoUpdated = {
+			...secondTodo,
+			title: thirdText,
+		};
+		act(() => {
+			result.current.updateTodo(secondTodoUpdated);
+		});
+		expect(result.current.todos).toEqual([firstTodo, secondTodoUpdated]);
+	});
+});
