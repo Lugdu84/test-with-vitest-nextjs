@@ -13,7 +13,7 @@ export default defineConfig({
 			IS_REACT_ACT_ENVIRONMENT: 'true',
 		},
 		alias: {
-			'@/': './',
+			'@/': new URL('./', import.meta.url).pathname,
 		},
 	},
 });

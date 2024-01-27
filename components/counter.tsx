@@ -1,5 +1,5 @@
 import { Button } from './ui/button';
-import { useCounter } from '../hooks/use-counter';
+import { useCounter } from '@/hooks/use-counter';
 import { Input } from './ui/input';
 import { Label } from '@radix-ui/react-label';
 
