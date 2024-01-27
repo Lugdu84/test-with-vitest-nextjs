@@ -1,4 +1,4 @@
-import { server } from '../mock/server';
+import { server } from '@/mock/server';
 
 describe('mock api ', () => {
 	beforeAll(() => {

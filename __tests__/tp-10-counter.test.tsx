@@ -1,5 +1,5 @@
 // Tests du composant Counter
-import Counter from '../components/counter';
+import Counter from '@/components/counter';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 

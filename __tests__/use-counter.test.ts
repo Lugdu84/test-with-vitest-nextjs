@@ -1,4 +1,4 @@
-import { useCounter } from '../hooks/use-counter';
+import { useCounter } from '@/hooks/use-counter';
 import { renderHook, act } from '@testing-library/react';
 
 // initial value 0 by default ok

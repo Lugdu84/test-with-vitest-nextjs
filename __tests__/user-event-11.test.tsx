@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import SearchBar from '../components/search-bar';
-import Counter from '../components/counter';
+import SearchBar from '@/components/search-bar';
+import Counter from '@/components/counter';
 import { setup } from './setup';
 
 describe('userEvent', () => {
