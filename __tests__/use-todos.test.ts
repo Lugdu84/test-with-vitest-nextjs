@@ -131,20 +131,13 @@ describe('update todos', () => {
 		const { result } = renderHook(() =>
 			useTodos({ initialTodos: [firstTodo] })
 		);
-		const firstTodoUpdated = {
-			...firstTodo,
-			completed: true,
-		};
 		act(() => {
-			result.current.updateTodo(firstTodoUpdated);
+			result.current.toggleTodo(firstTodo.id);
 		});
 		const toBeCompleted = result.current.todos[0].completed;
 		expect(toBeCompleted).toBe(true);
 		act(() => {
-			result.current.updateTodo({
-				...firstTodoUpdated,
-				completed: !firstTodoUpdated.completed,
-			});
+			result.current.toggleTodo(firstTodo.id);
 		});
 		const toBeCompletedAgain = result.current.todos[0].completed;
 		expect(toBeCompletedAgain).toBe(false);

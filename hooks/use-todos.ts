@@ -38,10 +38,21 @@ export const useTodos = ({ initialTodos = [] }: UseTodosProps = {}) => {
 		setTodos(newTodos);
 	};
 
+	const toggleTodo = (id: number) => {
+		const newTodos = todos.map((todo) => {
+			if (todo.id === id) {
+				return { ...todo, completed: !todo.completed };
+			}
+			return todo;
+		});
+		setTodos(newTodos);
+	};
+
 	return {
 		todos,
 		addTodo,
 		deleteTodoById,
 		updateTodo,
+		toggleTodo,
 	};
 };
